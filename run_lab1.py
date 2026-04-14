@@ -63,7 +63,7 @@ def ensure_datacard_templates(base_dir: Path = Path(".")) -> None:
             try:
                 path.write_text(content, encoding="utf-8")
             except OSError as exc:
-                raise RuntimeError(f"Cannot create template file: {path}") from exc
+                raise RuntimeError(f"Cannot create template file {path}: {exc}") from exc
 
 def main():
     ap = argparse.ArgumentParser()
