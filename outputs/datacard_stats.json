@@ -24,23 +24,11 @@
     "near_dup_pairs_found_in_sample": 0
   },
   "splits": {
-    "train": 40000,
-    "val": 5000,
-    "test": 5000
+    "train": 25000,
+    "val": 0,
+    "test": 25000
   },
-  "great_expectations": {
-    "ge_success": false,
-    "ge_stats": {
-      "evaluated_expectations": 6,
-      "successful_expectations": 5,
-      "unsuccessful_expectations": 1,
-      "success_percent": 83.33333333333334
-    }
-  },
-  "cleanlab": {
-    "suspected_count": 1003,
-    "suspected_ratio": 0.02006,
-    "export_top_k": 200
-  },
-  "generated_at": "2026-04-07T02:48:16.325331Z"
+  "great_expectations": null,
+  "cleanlab": null,
+  "generated_at": "2026-04-14T01:14:05.835822Z"
 }
