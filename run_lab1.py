@@ -19,9 +19,8 @@ from src.audit_core import (
     render_audit_md,
 )
 
-def ensure_datacard_templates(base_dir: Path = Path(".")) -> None:
-    templates = {
-        base_dir / "data_card.md": """# Data Card (copy từ Google Docs template)
+DATACARD_TEMPLATES = {
+    "data_card.md": """# Data Card (copy từ Google Docs template)
 
 Link Google Docs: ...
 
@@ -31,7 +30,7 @@ Link Google Docs: ...
 
 Dán nội dung Data Card bên dưới.
 """,
-        base_dir / "datacard" / "heuristics_scorecard.md": """# Heuristics Scorecard (Module 4)
+    "datacard/heuristics_scorecard.md": """# Heuristics Scorecard (Module 4)
 
 - Completeness: __/5
 - Accuracy: __/5
@@ -41,7 +40,7 @@ Dán nội dung Data Card bên dưới.
 
 Ghi chú:
 """,
-        base_dir / "datacard" / "metadata_register.md": """# Metadata Register — Verified / Estimated / To be measured
+    "datacard/metadata_register.md": """# Metadata Register — Verified / Estimated / To be measured
 
 ## Verified
 - N, label counts, length stats: outputs/datacard_stats.json
@@ -54,8 +53,11 @@ Ghi chú:
 ## To be measured
 - ...
 """,
-    }
-    for path, content in templates.items():
+}
+
+def ensure_datacard_templates(base_dir: Path = Path(".")) -> None:
+    for relative_path, content in DATACARD_TEMPLATES.items():
+        path = base_dir / relative_path
         path.parent.mkdir(parents=True, exist_ok=True)
         if not path.exists():
             path.write_text(content, encoding="utf-8")
