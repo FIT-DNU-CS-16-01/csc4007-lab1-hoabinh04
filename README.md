@@ -20,3 +20,5 @@ python run_lab1.py --dataset imdb --seed 42 --use_great_expectations --use_clean
 - `data_card.md` (copy từ Google Docs template)
 - `datacard/heuristics_scorecard.md`, `datacard/metadata_register.md`
 - `outputs/*` theo yêu cầu lab
+
+> Nếu lỡ xoá các file data card, chạy lại `run_lab1.py` sẽ tự tạo lại các file template còn thiếu.

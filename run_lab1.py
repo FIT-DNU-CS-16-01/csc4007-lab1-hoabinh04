@@ -19,6 +19,47 @@ from src.audit_core import (
     render_audit_md,
 )
 
+def ensure_datacard_templates(base_dir: Path = Path(".")) -> None:
+    templates = {
+        base_dir / "data_card.md": """# Data Card (copy từ Google Docs template)
+
+Link Google Docs: ...
+
+## Version
+- v1.0 — ...
+- v1.1 — ...
+
+Dán nội dung Data Card bên dưới.
+""",
+        base_dir / "datacard" / "heuristics_scorecard.md": """# Heuristics Scorecard (Module 4)
+
+- Completeness: __/5
+- Accuracy: __/5
+- Clarity: __/5
+- Timeliness: __/5
+- Actionability: __/5
+
+Ghi chú:
+""",
+        base_dir / "datacard" / "metadata_register.md": """# Metadata Register — Verified / Estimated / To be measured
+
+## Verified
+- N, label counts, length stats: outputs/datacard_stats.json
+- GE pass/fail: outputs/ge/validation_summary.md
+- Cleanlab suspected issues: outputs/logs/cleanlab_summary.md
+
+## Estimated
+- ...
+
+## To be measured
+- ...
+""",
+    }
+    for path, content in templates.items():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        if not path.exists():
+            path.write_text(content, encoding="utf-8")
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dataset", default="imdb", choices=["imdb"])
@@ -29,6 +70,7 @@ def main():
     args = ap.parse_args()
 
     set_seed(args.seed)
+    ensure_datacard_templates()
 
     out_dir = Path("outputs")
     (out_dir / "logs").mkdir(parents=True, exist_ok=True)
