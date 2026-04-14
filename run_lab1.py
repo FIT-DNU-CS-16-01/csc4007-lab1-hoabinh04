@@ -60,7 +60,10 @@ def ensure_datacard_templates(base_dir: Path = Path(".")) -> None:
         path = base_dir / relative_path
         path.parent.mkdir(parents=True, exist_ok=True)
         if not path.exists():
-            path.write_text(content, encoding="utf-8")
+            try:
+                path.write_text(content, encoding="utf-8")
+            except OSError as exc:
+                raise RuntimeError(f"Cannot create template file: {path}") from exc
 
 def main():
     ap = argparse.ArgumentParser()
